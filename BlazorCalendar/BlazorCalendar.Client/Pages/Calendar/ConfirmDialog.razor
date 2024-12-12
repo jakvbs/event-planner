@@ -1,0 +1,47 @@
+﻿@using BlazorCalendar.Client.Components
+@rendermode InteractiveAuto
+
+<ModalDialog Opened="_isOpened">
+    <HeaderContent>
+        <div class="confirm-header">Please confirm</div>
+    </HeaderContent>
+    <DialogContent>
+        <div class="confirm-content">
+            @_confirm
+        </div>
+        <div class="dialog-footer confirm-dialog-footer">
+            <button class="btn btn-primary" @onclick="InvokeActionAsync">OK</button>
+            <button class="btn btn-default btn-bordered-navy" @onclick="Close">Cancel</button>
+        </div>
+    </DialogContent>
+</ModalDialog>
+
+@code {
+    private bool _isOpened = false;
+    private string _confirm = default!;
+    private Func<Task> _action = () => Task.CompletedTask;
+
+    private async Task InvokeActionAsync()
+    {
+        await _action.Invoke();
+        Close();
+
+        StateHasChanged();
+    }
+
+    public void ConfirmAction(string confirm, Func<Task> action)
+    {
+        _confirm = confirm;
+        _action = action;
+
+        _isOpened = true;
+
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        _isOpened = false;
+    }
+
+}

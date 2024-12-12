@@ -1,0 +1,21 @@
+﻿@rendermode InteractiveAuto
+
+@if (Opened)
+{
+    <div class="dialog-outside">
+        <div class="dialog-contaner">
+            <div class="dialog-header">
+                @HeaderContent
+            </div>
+            @DialogContent
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool Opened { get; set; }
+
+    [Parameter] public RenderFragment HeaderContent { get; set; } = default!;
+
+    [Parameter] public RenderFragment DialogContent { get; set; } = default!;
+}
