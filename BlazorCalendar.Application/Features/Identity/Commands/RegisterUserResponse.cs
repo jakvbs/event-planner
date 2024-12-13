@@ -6,8 +6,8 @@ public class RegisterUserResponse
     {
     }
 
-    public string? UserId { get; init; }
-    public string? Error { get; init; }
+    public string? UserId { get; private init; }
+    public string? Error { get; private init; }
 
     public static RegisterUserResponse Success(string userId)
     {
