@@ -1,4 +1,3 @@
-using BlazorCalendar.Api;
 using BlazorCalendar.Application;
 using BlazorCalendar.Client.Components.Layout;
 using BlazorCalendar.Common;
@@ -12,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddControllers();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(c => c.LoginPath = "/Login");
@@ -55,7 +56,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapCalendarEndpoints();
+app.MapControllers();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
