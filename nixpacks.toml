@@ -1,0 +1,8 @@
+[phases.install]
+cmds = ['dotnet restore']
+
+[phases.build]
+cmds = ['dotnet build']
+
+[start]
+cmd = 'dotnet run --project BlazorCalendar/BlazorCalendar'
